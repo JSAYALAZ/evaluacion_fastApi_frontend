@@ -6,15 +6,15 @@ import { ɵInternalFormsSharedModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoadingPage } from '../../../pages/loading-page/loading-page';
 import { EmptyPage } from '../../../pages/empty-page/empty-page';
-import { CategoryCard, CategoryOutputDTO } from '../category-card/category-card';
+import { MatriculaCard, MatriculaOutputDTO } from '../matriculas-card/matriculas-card';
 
 @Component({
-  selector: 'app-category-main-page',
+  selector: 'app-matricula-main-page',
   standalone: true,
-  imports: [CommonModule, ɵInternalFormsSharedModule, CategoryCard,LoadingPage, EmptyPage],
-  templateUrl: './category-main-page.html',
+  imports: [CommonModule, ɵInternalFormsSharedModule, MatriculaCard,LoadingPage, EmptyPage],
+  templateUrl: './matriculas-main-page.html',
 })
-export class CategoryMainPage {
+export class MatriculaMainPage {
   get data$() {
     return this.axios.data$;
   }
@@ -25,10 +25,12 @@ export class CategoryMainPage {
     return this.axios.error$;
   }
 
-  constructor(private axios: AxiosService<CategoryOutputDTO[]>, private router: Router) {}
+  constructor(private axios: AxiosService<MatriculaOutputDTO[]>, private router: Router) {}
   ngOnInit() {
-    this.axios.fetch(APP_ROUTES.main.childrens.category.apiPath, { page: 1 }, []);
+    this.axios.fetch(APP_ROUTES.main.childrens.matricula.apiPath, { page: 1 }, []);
   }
-
+crearMatricula() {
+    this.router.navigate([APP_ROUTES.main.childrens.matricula_new.absolutePath]);
+  }
 
 }

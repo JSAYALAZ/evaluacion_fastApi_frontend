@@ -7,12 +7,12 @@ import { APP_ROUTES } from '../../../app.routes';
 import { ToastService } from '../../../services/toast.service';
 
 @Component({
-  selector: 'app-category-new-page',
+  selector: 'app-matricula-new-page',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
-  templateUrl: './category-new-page.html',
+  templateUrl: './matriculas-new-page.html',
 })
-export class CategoryNewPage {
+export class MatriculaNewPage {
   private activateRoute = inject(ActivatedRoute);
 
   authForm!: FormGroup;
@@ -23,7 +23,11 @@ export class CategoryNewPage {
   }
   initForm() {
     this.authForm = new FormGroup({
-      name: new FormControl('', Validators.required),
+      placa: new FormControl('', Validators.required),
+      propietario: new FormControl('', Validators.required),
+      marca: new FormControl('', Validators.required),
+      fabricacion: new FormControl('', Validators.required),
+      valor_comercial: new FormControl('', Validators.required),
     });
   }
   onSubmit() {
@@ -35,15 +39,19 @@ export class CategoryNewPage {
 
     try {
       const object = {
-        name: this.authForm.value.name,
+        placa: this.authForm.value.placa,
+        propietario: this.authForm.value.propietario,
+        marca: this.authForm.value.marca,
+        fabricacion: Number(this.authForm.value.fabricacion),
+        valor_comercial:Number( this.authForm.value.valor_comercial),
       };
 
-      this.http.post(APP_ROUTES.main.childrens.category.apiPath, object).subscribe({
+      this.http.post(APP_ROUTES.main.childrens.matricula.apiPath, object).subscribe({
         next: (v: any) => {
           if (v.success) {
             this.toast.success('Guardado correctamente', 'Hecho');
             setTimeout(() => {
-              this.route.navigate([APP_ROUTES.main.childrens.category.absolutePath]);
+              this.route.navigate([APP_ROUTES.main.childrens.matricula.absolutePath]);
             }, 5000);
           }
         },

@@ -1,0 +1,30 @@
+<ng-container *ngIf="loading$ | async"><app-loading-page></app-loading-page></ng-container>
+
+<ng-container *ngIf="error$ | async as error" class="text-red-500">Error: {{ error }}</ng-container>
+
+<ng-container *ngIf="data$ | async as data">
+  <button
+      (click)="crearMatricula()"
+      class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-indigo-600 text-white font-semibold shadow-sm hover:bg-indigo-700 active:scale-[0.995] transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white/50 dark:focus-visible:ring-offset-slate-900"
+      aria-label="Crear matricula"
+    >
+      <!-- icono + texto -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-4 h-4"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+        aria-hidden="true"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+      </svg>
+      Crear matricula
+    </button>
+  <ng-container *ngIf="!data.length"><app-empty-page></app-empty-page></ng-container>
+  <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-2">
+    <app-matricula-card *ngFor="let d of data" [matricula]="d"></app-matricula-card>
+  </div>
+</ng-container>
+

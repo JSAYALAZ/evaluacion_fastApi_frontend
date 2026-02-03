@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
 import { MainPage } from './pages/main-page/main-page.component';
 import { Home } from './modules/home/home';
-import { CategoryMainPage } from './modules/usuarios/category-main-page/category-main-page';
-import { CategoryNewPage } from './modules/usuarios/category-new-page/category-new-page';
+import { MatriculaMainPage } from './modules/matriculas/matriculas-main-page/matriculas-main-page';
+import { MatriculaNewPage } from './modules/matriculas/matriculas-new-page/matriculas-new-page';
 export const environment = {
   production: false,
-  api: 'http://localhost:8180/minimarket/api/',
+  api: 'http://127.0.0.1:8000/api/',
 };
 
 export interface RouteConfig {
@@ -23,17 +23,17 @@ export const APP_ROUTES = {
     component: MainPage,
     childrens: {
       main: { path: '', absolutePath: 'idx/', component: Home },
-      category: {
-        path: 'categorias',
-        absolutePath: 'idx/categorias',
-        component: CategoryMainPage,
-        apiPath: `${environment.api}category`,
+      matricula: {
+        path: 'matriculas',
+        absolutePath: 'idx/matriculas',
+        component: MatriculaMainPage,
+        apiPath: `${environment.api}matricula`,
       },
-      category_new: {
-        path: 'categorias/new',
-        absolutePath: 'idx/categorias/new',
-        component: CategoryNewPage,
-        apiPath: `${environment.api}category`,
+      matricula_new: {
+        path: 'matriculas/new',
+        absolutePath: 'idx/matriculas/new',
+        component: MatriculaNewPage,
+        apiPath: `${environment.api}matricula`,
       },
     
     },
@@ -41,18 +41,18 @@ export const APP_ROUTES = {
 };
 
 export const routes: Routes = [
-  { path: '', redirectTo: APP_ROUTES.main.childrens.category.absolutePath, pathMatch: 'full' },
+  { path: '', redirectTo: APP_ROUTES.main.childrens.matricula.absolutePath, pathMatch: 'full' },
 {
     path: APP_ROUTES.main.path,
     component: APP_ROUTES.main.component,
     children: [
       {
-        path: APP_ROUTES.main.childrens.category.path,
-        component: APP_ROUTES.main.childrens.category.component,
+        path: APP_ROUTES.main.childrens.matricula.path,
+        component: APP_ROUTES.main.childrens.matricula.component,
       },
       {
-        path: APP_ROUTES.main.childrens.category_new.path,
-        component: APP_ROUTES.main.childrens.category_new.component,
+        path: APP_ROUTES.main.childrens.matricula_new.path,
+        component: APP_ROUTES.main.childrens.matricula_new.component,
       },
       
       
