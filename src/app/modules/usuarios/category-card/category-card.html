@@ -1,0 +1,24 @@
+<article
+  class="w-full max-w-sm mx-auto bg-white/80 rounded-2xl shadow-md overflow-hidden transform transition hover:-translate-y-1"
+  role="group"
+  aria-label="Carta de presentación de usuario">
+  <div class="relative">
+    <div class="p-6 flex flex-col items-center gap-3">
+
+      <ng-template #avatarPlaceholder>
+        <div
+          class="w-28 h-28 rounded-full flex items-center justify-center text-3xl font-semibold bg-gray-100 text-slate-700 ring-4 ring-white shadow-sm"
+        >
+          {{ getInitial() }}
+        </div>
+      </ng-template>
+
+      <!-- Nombre -->
+      <h1 class="mt-1 text-center text-lg md:text-2xl font-bold text-slate-900">
+        {{ category.name }}
+      </h1>
+
+      
+    </div>
+    </div>
+</article>

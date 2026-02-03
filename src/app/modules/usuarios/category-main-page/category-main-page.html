@@ -1,0 +1,11 @@
+<ng-container *ngIf="loading$ | async"><app-loading-page></app-loading-page></ng-container>
+
+<ng-container *ngIf="error$ | async as error" class="text-red-500">Error: {{ error }}</ng-container>
+
+<ng-container *ngIf="data$ | async as data">
+  <ng-container *ngIf="!data.length"><app-empty-page></app-empty-page></ng-container>
+  <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-2">
+    <app-category-card *ngFor="let d of data" [category]="d"></app-category-card>
+  </div>
+</ng-container>
+
